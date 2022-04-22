@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    //MARK: - IBOutlets
     var colors = UIColor()
     @IBOutlet weak var colorPaletteView: UIView!
     
@@ -29,11 +30,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var blueSlider: UISlider!
     @IBOutlet weak var alphaSlider: UISlider!
     
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         settingUpScreenItems()
     }
 
+    //MARK: - IBActions
     @IBAction func settingColors() {
         numberRedLabel.text = String(Int(redSlider.value))
         numberGreenLabel.text = String(Int(greenSlider.value))
@@ -51,6 +54,7 @@ class ViewController: UIViewController {
         
     }
     
+    //MARK: - Private methods
     private func settingUpScreenItems() {
         // views
         view.backgroundColor = .black
