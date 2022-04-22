@@ -52,14 +52,19 @@ class ViewController: UIViewController {
     }
     
     private func settingUpScreenItems() {
+        // views
         view.backgroundColor = .black
         colorPaletteView.layer.cornerRadius = 10
+        colorPaletteView.backgroundColor = colorPaletteView.backgroundColor?.withAlphaComponent(0)
+        colorPaletteView.layer.shadowColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1)
+        colorPaletteView.layer.shadowRadius = 10
+        colorPaletteView.layer.shadowOpacity = 7
         
         // sliders
         redSlider.value = 0
         greenSlider.value = 0
         blueSlider.value = 0
-        alphaSlider.value = 1
+        alphaSlider.value = 0
         
         redSlider.minimumValue = 0
         redSlider.maximumValue = 255
@@ -71,32 +76,26 @@ class ViewController: UIViewController {
         greenSlider.minimumTrackTintColor = .green
         greenSlider.maximumTrackTintColor = .darkGray
 
-        
         blueSlider.minimumValue = 0
         blueSlider.maximumValue = 255
         blueSlider.minimumTrackTintColor = .blue
         blueSlider.maximumTrackTintColor = .darkGray
 
-        
         alphaSlider.minimumValue = 0
         alphaSlider.maximumValue = 1
         alphaSlider.minimumTrackTintColor = .white
         alphaSlider.maximumTrackTintColor = .darkGray
 
-        
-        //label colors
+        // label colors
         redColorLabel.textColor = .red
         greenColorLabel.textColor = .green
         blueColorLabel.textColor = .blue
         
-        //number colors
+        // number colors
         numberRedLabel.text = "0"
         numberGreenLabel.text = "0"
         numberBlueLabel.text = "0"
-        
-        
-        
-        
+        numberAlphaLabel.text = "0.00"
     }
 }
 
