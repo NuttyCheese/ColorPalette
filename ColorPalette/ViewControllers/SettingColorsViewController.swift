@@ -14,15 +14,19 @@ class SettingColorsViewController: UIViewController {
     
     @IBOutlet weak var redColorLabel: UILabel!
     @IBOutlet weak var numberRedLabel: UILabel!
+    @IBOutlet weak var redTextField: UITextField!
     
     @IBOutlet weak var greenColorLabel: UILabel!
     @IBOutlet weak var numberGreenLabel: UILabel!
+    @IBOutlet weak var greenTextField: UITextField!
     
     @IBOutlet weak var blueColorLabel: UILabel!
     @IBOutlet weak var numberBlueLabel: UILabel!
+    @IBOutlet weak var blueTextField: UITextField!
     
     @IBOutlet weak var alphaLabel: UILabel!
     @IBOutlet weak var numberAlphaLabel: UILabel!
+    @IBOutlet weak var alphaTextField: UITextField!
     
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
@@ -31,12 +35,23 @@ class SettingColorsViewController: UIViewController {
     
     //MARK: - Private properties
     private var colors = UIColor()
+    private let toolBar = UIToolbar()
     
     //MARK: - Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+//        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         settingUpScreenItems()
+        settingsToolBarItems()
+        
+        redTextField.delegate = self
+        greenTextField.delegate = self
+        blueTextField.delegate = self
+        alphaTextField.delegate = self
+        
+        
     }
 
     //MARK: - IB Actions
@@ -45,6 +60,11 @@ class SettingColorsViewController: UIViewController {
         numberGreenLabel.text = String(Int(greenSlider.value))
         numberBlueLabel.text = String(Int(blueSlider.value))
         numberAlphaLabel.text = String(format: "%.2f", alphaSlider.value)
+        
+        redTextField.text = String(Int(redSlider.value))
+        greenTextField.text = String(Int(greenSlider.value))
+        blueTextField.text = String(Int(blueSlider.value))
+        alphaTextField.text = String(format: "%.2f", alphaSlider.value)
         
         colors = UIColor(
             red: CGFloat(redSlider.value / 255),
@@ -104,6 +124,60 @@ class SettingColorsViewController: UIViewController {
         numberGreenLabel.text = "0"
         numberBlueLabel.text = "0"
         numberAlphaLabel.text = "0.00"
+        
+        // text filed colors
+        redTextField.keyboardType = .decimalPad
+        redTextField.inputAccessoryView = toolBar
+        
+        greenTextField.keyboardType = .decimalPad
+        greenTextField.inputAccessoryView = toolBar
+        
+        blueTextField.keyboardType = .decimalPad
+        blueTextField.inputAccessoryView = toolBar
+        
+        alphaTextField.keyboardType = .decimalPad
+        alphaTextField.inputAccessoryView = toolBar
+    }
+    
+    private func settingsToolBarItems() {
+        let doneButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(donePressed))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.sizeToFit()
+        toolBar.setItems([flexibleSpace, doneButtonItem], animated: true)
+    }
+    
+    //MARK: - Objectiv-c methods
+    @objc private func donePressed() {
+        
+    }
+}
+
+extension SettingColorsViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let redValue = redTextField.text else { return }
+        guard let red = Float(redValue) else { return }
+        
+        guard let greenValue = greenTextField.text else { return }
+        guard let green = Float(greenValue) else { return }
+        
+        guard let blueValue = blueTextField.text else { return }
+        guard let blue = Float(blueValue) else { return }
+        
+        guard let alphaValue = alphaTextField.text else { return }
+        guard let alpha = Float(alphaValue) else { return }
+        
+        if textField == redTextField {
+            redSlider.value = red
+        }else if textField == greenTextField {
+            greenSlider.value = green
+        }else if textField == blueTextField {
+            blueSlider.value = blue
+        }else if textField == alphaTextField {
+            alphaSlider.value = alpha
+        }
     }
 }
 

@@ -3,7 +3,6 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,8 +19,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Dbm-To-Nr9">
-                        <barButtonItem key="rightBarButtonItem" image="square.and.pencil" catalog="system" id="Y9g-Gi-r6I">
-                            <imageReference key="landscapeImage" image="square.and.pencil" catalog="system" symbolScale="medium" renderingMode="original"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.pencil" catalog="system" id="Y9g-Gi-r6I">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="dIN-QZ-04t"/>
                             </connections>
@@ -111,22 +109,22 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="XS2-Tv-eGA">
                                         <rect key="frame" x="0.0" y="57" width="280" height="34"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Red" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-WK-dGF">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-WK-dGF">
                                                 <rect key="frame" x="0.0" y="0.0" width="59.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Green" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3d-E3-EpM">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3d-E3-EpM">
                                                 <rect key="frame" x="73.5" y="0.0" width="59.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Blue" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cyv-eR-6Ax">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cyv-eR-6Ax">
                                                 <rect key="frame" x="147" y="0.0" width="59.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alpha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8nU-sy-gTN">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.00" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8nU-sy-gTN">
                                                 <rect key="frame" x="220.5" y="0.0" width="59.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -136,28 +134,29 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="zFq-YH-iZv">
-                                <rect key="frame" x="20" y="413" width="280" height="30"/>
+                                <rect key="frame" x="20" y="321" width="280" height="140"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Xac-Ez-Xtf">
-                                        <rect key="frame" x="-2" y="0.0" width="58" height="31"/>
+                                        <rect key="frame" x="-2" y="0.0" width="58" height="141"/>
                                         <connections>
                                             <action selector="settingColors" destination="BYZ-38-t0r" eventType="valueChanged" id="WNR-9v-vDJ"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="S9Z-Wt-mKO">
-                                        <rect key="frame" x="75" y="0.0" width="53" height="31"/>
+                                        <rect key="frame" x="75" y="0.0" width="53" height="141"/>
                                         <connections>
                                             <action selector="settingColors" destination="BYZ-38-t0r" eventType="valueChanged" id="WVd-dY-pqt"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XFi-md-rfq">
-                                        <rect key="frame" x="147" y="0.0" width="60" height="31"/>
+                                        <rect key="frame" x="147" y="0.0" width="60" height="141"/>
                                         <connections>
                                             <action selector="settingColors" destination="BYZ-38-t0r" eventType="valueChanged" id="scM-c9-0Ps"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="GKV-Cl-yxJ">
-                                        <rect key="frame" x="226" y="0.0" width="56" height="31"/>
+                                        <rect key="frame" x="226" y="0.0" width="56" height="141"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="settingColors" destination="BYZ-38-t0r" eventType="valueChanged" id="baL-gA-8U5"/>
                                         </connections>
@@ -167,6 +166,7 @@
                                     <constraint firstItem="S9Z-Wt-mKO" firstAttribute="width" secondItem="XFi-md-rfq" secondAttribute="width" multiplier="0.869565" id="GLn-ao-EQB"/>
                                     <constraint firstItem="XFi-md-rfq" firstAttribute="width" secondItem="GKV-Cl-yxJ" secondAttribute="width" multiplier="1.07407" id="H5W-Vj-6tP"/>
                                     <constraint firstItem="Xac-Ez-Xtf" firstAttribute="width" secondItem="S9Z-Wt-mKO" secondAttribute="width" multiplier="1.1134" id="jkN-AW-h92"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="140" id="sMf-aj-YQ2"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5s-vs-V2W">
@@ -179,9 +179,9 @@
                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="H5s-vs-V2W" secondAttribute="bottom" constant="20" id="6Ry-IS-W07"/>
+                            <constraint firstItem="zFq-YH-iZv" firstAttribute="top" secondItem="MS8-We-7Ue" secondAttribute="bottom" constant="8" symbolic="YES" id="FyR-BC-JyI"/>
                             <constraint firstAttribute="trailing" secondItem="MS8-We-7Ue" secondAttribute="trailing" constant="20" id="Ivy-hZ-spr"/>
                             <constraint firstItem="iqs-mS-fbe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="P8d-HF-8bc"/>
-                            <constraint firstItem="zFq-YH-iZv" firstAttribute="top" secondItem="MS8-We-7Ue" secondAttribute="bottom" constant="100" id="PHx-42-rPL"/>
                             <constraint firstItem="iqs-mS-fbe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="S8Z-9b-UKe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zFq-YH-iZv" secondAttribute="trailing" constant="20" id="coJ-nU-YYZ"/>
                             <constraint firstItem="MS8-We-7Ue" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="iLX-oH-cUw"/>
@@ -195,17 +195,21 @@
                     <connections>
                         <outlet property="alphaLabel" destination="ng1-Q8-oba" id="0Ij-Jh-YKB"/>
                         <outlet property="alphaSlider" destination="GKV-Cl-yxJ" id="Z4i-oR-Mew"/>
+                        <outlet property="alphaTextField" destination="8nU-sy-gTN" id="kOa-e0-sHr"/>
                         <outlet property="blueColorLabel" destination="Gal-Td-war" id="fKD-eG-ZNj"/>
                         <outlet property="blueSlider" destination="XFi-md-rfq" id="wys-Wo-0aB"/>
+                        <outlet property="blueTextField" destination="cyv-eR-6Ax" id="9ao-Vm-8f0"/>
                         <outlet property="colorPaletteView" destination="iqs-mS-fbe" id="aBb-4y-zIL"/>
                         <outlet property="greenColorLabel" destination="Vew-kX-Nb4" id="tpX-Wz-p87"/>
                         <outlet property="greenSlider" destination="S9Z-Wt-mKO" id="4vc-uk-ZoK"/>
+                        <outlet property="greenTextField" destination="T3d-E3-EpM" id="qen-fh-rfG"/>
                         <outlet property="numberAlphaLabel" destination="BOv-qK-WEM" id="3gu-EI-qmE"/>
                         <outlet property="numberBlueLabel" destination="ZRo-Aw-Tyv" id="XWf-Xx-dIl"/>
                         <outlet property="numberGreenLabel" destination="NFH-Lp-rU3" id="XzM-Tt-3uv"/>
                         <outlet property="numberRedLabel" destination="vxr-Tm-eES" id="KOr-bb-2f1"/>
                         <outlet property="redColorLabel" destination="Wbe-py-ixM" id="eFJ-gY-k6u"/>
                         <outlet property="redSlider" destination="Xac-Ez-Xtf" id="jwd-zt-Mgw"/>
+                        <outlet property="redTextField" destination="sYv-WK-dGF" id="J4f-Ys-Aiu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
