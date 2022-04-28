@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SettingColorsViewController.swift
 //  ColorPalette
 //
 //  Created by Борис Павлов on 21.04.2022.
@@ -7,10 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SettingColorsViewController: UIViewController {
 
     //MARK: - IBOutlets
-    var colors = UIColor()
     @IBOutlet weak var colorPaletteView: UIView!
     
     @IBOutlet weak var redColorLabel: UILabel!
@@ -30,13 +29,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var blueSlider: UISlider!
     @IBOutlet weak var alphaSlider: UISlider!
     
-    //MARK: - Life Cycle
+    //MARK: - Private properties
+    private var colors = UIColor()
+    
+    //MARK: - Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         settingUpScreenItems()
     }
 
-    //MARK: - IBActions
+    //MARK: - IB Actions
     @IBAction func settingColors() {
         numberRedLabel.text = String(Int(redSlider.value))
         numberGreenLabel.text = String(Int(greenSlider.value))
@@ -60,9 +63,6 @@ class ViewController: UIViewController {
         view.backgroundColor = .black
         colorPaletteView.layer.cornerRadius = 10
         colorPaletteView.backgroundColor = colorPaletteView.backgroundColor?.withAlphaComponent(0)
-        colorPaletteView.layer.shadowColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1)
-        colorPaletteView.layer.shadowRadius = 10
-        colorPaletteView.layer.shadowOpacity = 7
         
         // sliders
         redSlider.value = 0
@@ -74,21 +74,25 @@ class ViewController: UIViewController {
         redSlider.maximumValue = 255
         redSlider.minimumTrackTintColor = .red
         redSlider.maximumTrackTintColor = .darkGray
+        redSlider.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
         
         greenSlider.minimumValue = 0
         greenSlider.maximumValue = 255
         greenSlider.minimumTrackTintColor = .green
         greenSlider.maximumTrackTintColor = .darkGray
-
+        greenSlider.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
+        
         blueSlider.minimumValue = 0
         blueSlider.maximumValue = 255
         blueSlider.minimumTrackTintColor = .blue
         blueSlider.maximumTrackTintColor = .darkGray
-
+        blueSlider.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
+        
         alphaSlider.minimumValue = 0
         alphaSlider.maximumValue = 1
         alphaSlider.minimumTrackTintColor = .white
         alphaSlider.maximumTrackTintColor = .darkGray
+        alphaSlider.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
 
         // label colors
         redColorLabel.textColor = .red
