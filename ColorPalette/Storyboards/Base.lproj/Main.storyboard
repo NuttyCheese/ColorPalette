@@ -156,7 +156,6 @@
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="GKV-Cl-yxJ">
                                         <rect key="frame" x="226" y="0.0" width="56" height="141"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="settingColors" destination="BYZ-38-t0r" eventType="valueChanged" id="baL-gA-8U5"/>
                                         </connections>
@@ -173,6 +172,9 @@
                                 <rect key="frame" x="130.5" y="517" width="59" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Done"/>
+                                <connections>
+                                    <action selector="saveNewColor" destination="BYZ-38-t0r" eventType="touchUpInside" id="eoq-QD-ngl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -200,6 +202,7 @@
                         <outlet property="blueSlider" destination="XFi-md-rfq" id="wys-Wo-0aB"/>
                         <outlet property="blueTextField" destination="cyv-eR-6Ax" id="9ao-Vm-8f0"/>
                         <outlet property="colorPaletteView" destination="iqs-mS-fbe" id="aBb-4y-zIL"/>
+                        <outlet property="doneButton" destination="H5s-vs-V2W" id="XZ7-FC-zcZ"/>
                         <outlet property="greenColorLabel" destination="Vew-kX-Nb4" id="tpX-Wz-p87"/>
                         <outlet property="greenSlider" destination="S9Z-Wt-mKO" id="4vc-uk-ZoK"/>
                         <outlet property="greenTextField" destination="T3d-E3-EpM" id="qen-fh-rfG"/>

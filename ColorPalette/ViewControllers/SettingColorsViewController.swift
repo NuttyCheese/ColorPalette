@@ -33,8 +33,15 @@ class SettingColorsViewController: UIViewController {
     @IBOutlet weak var blueSlider: UISlider!
     @IBOutlet weak var alphaSlider: UISlider!
     
+    @IBOutlet weak var doneButton: UIButton!
+    
+    
+    //MARK: - Public properties
+    var delegate: SettingsColorsViewControllerDelegate!
+    
     //MARK: - Private properties
-    private var colors = UIColor()
+    private var colorsSlider = UIColor()
+    private var colorsTextField = UIColor()
     private let toolBar = UIToolbar()
     
     //MARK: - Override functions
@@ -66,16 +73,27 @@ class SettingColorsViewController: UIViewController {
         blueTextField.text = String(Int(blueSlider.value))
         alphaTextField.text = String(format: "%.2f", alphaSlider.value)
         
-        colors = UIColor(
+        colorsSlider = UIColor(
             red: CGFloat(redSlider.value / 255),
             green: CGFloat(greenSlider.value / 255),
             blue: CGFloat(blueSlider.value / 255),
             alpha: CGFloat(alphaSlider.value)
         )
         
-        colorPaletteView.backgroundColor = colors
+        colorPaletteView.backgroundColor = colorsSlider
         
     }
+    
+    @IBAction func saveNewColor() {
+        
+        colorPaletteView.backgroundColor = colorsSlider
+        print("RS:\(redSlider.value),GS:\(greenSlider.value),BS:\(blueSlider.value)")
+        
+        delegate.newColor(for: colorsSlider)
+        
+        dismiss(animated: true)
+    }
+    
     
     //MARK: - Private methods
     private func settingUpScreenItems() {
@@ -146,14 +164,59 @@ class SettingColorsViewController: UIViewController {
         toolBar.setItems([flexibleSpace, doneButtonItem], animated: true)
     }
     
-    //MARK: - Objectiv-c methods
+    //MARK: - Objective-C methods
     @objc private func donePressed() {
         
+        view.endEditing(true)
+        
+        
+        print("RT:\(redTextField.text!),GT:\(greenTextField.text!),BT:\(blueTextField.text!)")
+        
+        colorPaletteView.backgroundColor = colorsTextField
+        
+        delegate.newColor(for: colorsTextField)
+        
+        dismiss(animated: true)
     }
 }
 
 extension SettingColorsViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
+       
+        guard let redValue = redTextField.text else { return }
+        guard let red = Float(redValue) else { return }
+        
+        guard let greenValue = greenTextField.text else { return }
+        guard let green = Float(greenValue) else { return }
+        
+        guard let blueValue = blueTextField.text else { return }
+        guard let blue = Float(blueValue) else { return }
+        
+        guard let alphaValue = alphaTextField.text else { return }
+        guard let alpha = Float(alphaValue) else { return }
+        
+        if textField == redTextField {
+            redTextField.text = ""
+            redSlider.value = red
+        }else if textField == greenTextField {
+            greenTextField.text = ""
+            greenSlider.value = green
+        }else if textField == blueTextField {
+            blueTextField.text = ""
+            blueSlider.value = blue
+        }else if textField == alphaTextField {
+            alphaTextField.text = ""
+            alphaSlider.value = alpha
+        }
+        
+        colorsTextField = UIColor(
+            red: CGFloat(red / 255),
+            green: CGFloat(green / 255),
+            blue: CGFloat(blue / 255),
+            alpha: CGFloat(alpha)
+        )
+        
+        colorPaletteView.backgroundColor = colorsTextField
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -178,6 +241,15 @@ extension SettingColorsViewController: UITextFieldDelegate {
         }else if textField == alphaTextField {
             alphaSlider.value = alpha
         }
+        
+        colorsTextField = UIColor(
+            red: CGFloat(red / 255),
+            green: CGFloat(green / 255),
+            blue: CGFloat(blue / 255),
+            alpha: CGFloat(alpha)
+        )
+        
+        colorPaletteView.backgroundColor = colorsTextField
     }
 }
 
