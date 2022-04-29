@@ -88,8 +88,8 @@
 		89FB4FF9281AC40400EA63F6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				891ECA7C281183C00092DD7F /* SettingColorsViewController.swift */,
 				89FB4FFB281AC49A00EA63F6 /* MainColorViewController.swift */,
+				891ECA7C281183C00092DD7F /* SettingColorsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

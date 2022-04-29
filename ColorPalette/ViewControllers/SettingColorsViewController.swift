@@ -35,29 +35,29 @@ class SettingColorsViewController: UIViewController {
     
     @IBOutlet weak var doneButton: UIButton!
     
-    
     //MARK: - Public properties
     var delegate: SettingsColorsViewControllerDelegate!
     
     //MARK: - Private properties
-    private var colorsSlider = UIColor()
-    private var colorsTextField = UIColor()
     private let toolBar = UIToolbar()
+    var newColor = UIColor()
     
     //MARK: - Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
         settingUpScreenItems()
         settingsToolBarItems()
-        
+        settingsSliders()
+
         redTextField.delegate = self
         greenTextField.delegate = self
         blueTextField.delegate = self
         alphaTextField.delegate = self
         
+                
+        colorPaletteView.backgroundColor = newColor
+        doneButton.backgroundColor = newColor
         
     }
 
@@ -73,24 +73,24 @@ class SettingColorsViewController: UIViewController {
         blueTextField.text = String(Int(blueSlider.value))
         alphaTextField.text = String(format: "%.2f", alphaSlider.value)
         
-        colorsSlider = UIColor(
+        colorPaletteView.backgroundColor = UIColor(
             red: CGFloat(redSlider.value / 255),
             green: CGFloat(greenSlider.value / 255),
             blue: CGFloat(blueSlider.value / 255),
             alpha: CGFloat(alphaSlider.value)
         )
-        
-        colorPaletteView.backgroundColor = colorsSlider
-        
+        doneButton.backgroundColor = UIColor(
+            red: CGFloat(redSlider.value / 255),
+            green: CGFloat(greenSlider.value / 255),
+            blue: CGFloat(blueSlider.value / 255),
+            alpha: CGFloat(alphaSlider.value)
+        )
     }
     
     @IBAction func saveNewColor() {
         
-        colorPaletteView.backgroundColor = colorsSlider
-        print("RS:\(redSlider.value),GS:\(greenSlider.value),BS:\(blueSlider.value)")
-        
-        delegate.newColor(for: colorsSlider)
-        
+        delegate.newColor(for: colorPaletteView.backgroundColor ?? .white)
+            
         dismiss(animated: true)
     }
     
@@ -155,6 +155,9 @@ class SettingColorsViewController: UIViewController {
         
         alphaTextField.keyboardType = .decimalPad
         alphaTextField.inputAccessoryView = toolBar
+        
+        //button
+        doneButton.layer.cornerRadius = 10
     }
     
     private func settingsToolBarItems() {
@@ -164,17 +167,21 @@ class SettingColorsViewController: UIViewController {
         toolBar.setItems([flexibleSpace, doneButtonItem], animated: true)
     }
     
+    private func settingsSliders() {
+        let ciColor = CIColor(color: newColor)
+        
+        redSlider.value = Float(ciColor.red)
+        greenSlider.value = Float(ciColor.green)
+        blueSlider.value = Float(ciColor.blue)
+        alphaSlider.value = Float(ciColor.alpha - 1)
+    }
+    
     //MARK: - Objective-C methods
     @objc private func donePressed() {
         
         view.endEditing(true)
         
-        
-        print("RT:\(redTextField.text!),GT:\(greenTextField.text!),BT:\(blueTextField.text!)")
-        
-        colorPaletteView.backgroundColor = colorsTextField
-        
-        delegate.newColor(for: colorsTextField)
+        delegate.newColor(for: colorPaletteView.backgroundColor ?? .white)
         
         dismiss(animated: true)
     }
@@ -208,15 +215,13 @@ extension SettingColorsViewController: UITextFieldDelegate {
             alphaTextField.text = ""
             alphaSlider.value = alpha
         }
-        
-        colorsTextField = UIColor(
+
+        colorPaletteView.backgroundColor = UIColor(
             red: CGFloat(red / 255),
             green: CGFloat(green / 255),
             blue: CGFloat(blue / 255),
             alpha: CGFloat(alpha)
         )
-        
-        colorPaletteView.backgroundColor = colorsTextField
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -242,14 +247,12 @@ extension SettingColorsViewController: UITextFieldDelegate {
             alphaSlider.value = alpha
         }
         
-        colorsTextField = UIColor(
+        colorPaletteView.backgroundColor = UIColor(
             red: CGFloat(red / 255),
             green: CGFloat(green / 255),
             blue: CGFloat(blue / 255),
             alpha: CGFloat(alpha)
         )
-        
-        colorPaletteView.backgroundColor = colorsTextField
     }
 }
 

@@ -12,28 +12,23 @@ protocol SettingsColorsViewControllerDelegate {
 }
 
 class MainColorViewController: UIViewController {
-    
-    var newColor = UIColor()
-    
+
+
     override func viewDidLoad() {
-        
-        newColor = .white
-        view.backgroundColor = newColor 
-        
+        view.backgroundColor = .black
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let navigationVC = segue.destination as? UINavigationController else { return }
-        guard let settingsColorsVoewController = navigationVC.topViewController as? SettingColorsViewController else { return }
-        settingsColorsVoewController.colorPaletteView.backgroundColor = view.backgroundColor
-        settingsColorsVoewController.delegate = self
+        guard let settingsColorsViewController = segue.destination as? SettingColorsViewController else { return }
+        settingsColorsViewController.newColor = view.backgroundColor ?? .white
+        settingsColorsViewController.delegate = self
+        view.backgroundColor = settingsColorsViewController.newColor
+        
     }
-    
 }
 
 extension MainColorViewController: SettingsColorsViewControllerDelegate {
     func newColor(for color: UIColor) {
-        newColor = color
-        view.backgroundColor = newColor
+        view.backgroundColor = color
     }
 }
